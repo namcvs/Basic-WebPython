@@ -1,0 +1,174 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+
+{% if current_user.is_authenticated %}
+<h1 class="text-center text-info">Chào Mừng Đến Trang Quản Trị dành cho {{current_user.user_role.name}}</h1>
+<h2 class="text-center">Chào {{current_user.name}}</h2>
+
+
+<h2 class="text-info text-danger text-center ">Thống kê theo tháng</h2>
+
+<!-- SEARCH-->
+
+<div class="mb-2 mt-3">
+    <form class="d-flex" method="get">
+        <input class="form-control me-sm-2" type="text" name="kw_thang" placeholder="Month">
+        <input class="form-control me-sm-2" type="text" name="kw_nam" placeholder="Year">
+
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+<h2 class="text-info">Thống kê doanh thu </h2>
+<div class="row">
+    <div class="col-md-5">
+        <!--        <h1>{{stats}}</h1>-->
+        <!--        <h1>{{statsThang}}</h1>-->
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Ngày</th>
+                <th>Số bệnh nhân</th>
+                <th>Doanh thu</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in statsThang %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{c.Ngay}}</td>
+                <td>{{c.SoBenhNhan}}</td>
+                <td>{{c.DoanhThu}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+    <div class="col-md-7">
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+<!--BAOCAO THUOC-->
+<h2 class="text-info">Thống kê Thuốc </h2>
+<div class="row">
+    <div class="col-md-5">
+        <!--        <h1>{{stats}}</h1>-->
+        <!--        <h1>{{statsThang}}</h1>-->
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Thuốc</th>
+                <th>Đơn vị</th>
+                <th>Số Lượng</th>
+                <th>Số lần dùng</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in tansuatsudungthuoc %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{c.tenThuoc}}</td>
+                <td>{{c.tenDV}}</td>
+                <td>{{c.TongSoLuong}}</td>
+                <td>{{c.SoLanDung}}</td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-7">
+        <canvas id="myChart2"></canvas>
+        <button class="btn btn-success my-2 my-sm-0">Xuất PDF</button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let data = [];
+        let labels = [];
+
+        let mdata = [];
+        let mlabels = [];
+
+        {% for c in statsThang %}
+            data.push({{ c[2] }});
+            labels.push('{{ c[0] }}');
+        {% endfor %}
+
+        {% for d in tansuatsudungthuoc %}
+            mdata.push({{ d[5] }});
+            mlabels.push('{{ d[2] }}');
+        {% endfor %}
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Doanh Thu',
+                    data: data,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: mlabels,
+                datasets: [{
+                    label: 'Số lần Dùng',
+                    data: mdata,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+<!---------------->
+{% else %}
+
+
+<form method="post" action="/admin/login">
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" class="form-control" id="email" name="username" placeholder="Tên đăng nhập" required>
+        <label for="email">Tài khoản</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" class="form-control" id="pwd" name="password" placeholder="Enter password" required>
+        <label for="pwd">Mật khẩu</label>
+    </div>
+    <div class="form-floating mt-3 mb-3">
+        <button type="submit" class="btn btn-success">Đăng nhập</button>
+        <button type="" class="btn btn-danger">
+            <a class="text-decoration-none text-light" href="/">Hủy</a>
+        </button>
+    </div>
+</form>
+{% endif %}
+
+{% endblock %}

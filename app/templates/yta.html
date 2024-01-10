@@ -1,0 +1,36 @@
+{% extends "layout/base.html" %}
+{% block title %} Gio hang {% endblock %}
+
+{% block content %}
+<!-- MAKE AN APPOINTMENT -->
+
+<div style="margin-top:70px"></div>
+{% if err_msg %}
+<!--<div class="alert alert-danger">-->
+<!--    {{ err_msg }}-->
+<!--</div>-->
+<div class="alert alert-dismissible alert-danger ">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong>Oh Không!!!</strong> <a href="#" class="alert-link"> {{ err_msg }}</a> hãy thử lại lần nữa.
+</div>
+
+{% elif success_message %}
+<!--<div class="alert alert-info">-->
+<!--    {{ success_message }}-->
+<!--</div>-->
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong>Well done!</strong>  {{ success_message }}
+</div>
+{% endif %}
+<div class="container mt-4">
+
+    <div class="row">
+        <!-- Left Column - Form -->
+        {% include 'layout/yta/yta_dangkikhamtructiep.html' %}
+
+        <!-- Right Column - Slider -->
+        {% include 'layout/yta/yta_danhsachbenhnhan.html' %}
+    </div>
+</div>
+{% endblock %}

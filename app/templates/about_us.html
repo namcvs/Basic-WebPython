@@ -1,0 +1,666 @@
+{% extends "layout/base.html" %}
+{% block title %} Gio hang {% endblock %}
+
+{% block content %}
+<style>
+
+    h1.title-chitiet {
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 35px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #4ca69d;
+      height: 100px; /* Điều chỉnh chiều cao theo mong muốn */
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      margin: 0;
+      padding: 20px; /* Khoảng cách giữa đường viền và nội dung */
+    }
+      p.first-line{
+             font-size: 17px;
+         }
+     h2.title-h2 {
+              color: #6a276e;
+              display: inherit;
+              margin: 10px 0px;
+              border-bottom: 1px solid #6a276e;
+     }
+
+       .box-qcao {
+                                  width:100%;
+                                  padding:15px 10px;
+                                  box-sizing:border-box;
+                                  border:2px solid #39bdbd;
+
+
+                          }
+}
+       .box-qcao p{
+                              line-height: 27px;
+                              text-align: justify;
+                              margin-bottom: 7px;
+                              clear: both;
+                              font-family: arial;
+                              font-size: 14px;
+                              color: #000;
+       }
+                  /* Thêm style cho box-qcao */
+    .box-qcao {
+      width: 100%;
+      padding: 15px 10px;
+      box-sizing: border-box;
+      border: 2px solid #39bdbd;
+      margin-bottom: 20px;
+    }
+
+      section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 0;
+    }
+
+       /* Thêm style cho noidung-trangloai */
+      .noidung-trangloai {
+      width: 80%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+      /* Thêm style cho box_trangloai */
+    .box_trangloai {
+      margin-bottom: 20px;
+    }
+      /* Thêm style cho tuvan button */
+    .btn_tuvan_noidung {
+      width: 30rem;
+      height: 100px;
+      margin-top: 10px;
+    }
+
+      /* Thêm style cho sidebar */
+    .box_slidebar {
+      width: 25%;
+      float: right;
+
+    }
+    .content-left{
+     width:42%;
+     float:left;
+
+    }
+       /* Thêm style cho wp_service */
+    .wp_service {
+      width: 100% !important;
+      margin-top: 2px !important;
+      background: #4ca59c !important;
+      padding: 10px;
+    }
+      /* Thêm style cho goi_dv select */
+    .goi_dv select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+      /* Thêm style cho gia và chitiet */
+      .gia, .chitiet {
+      width: 60%;
+      background: #39bdbd;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-top: 10px;
+    }
+      /* Thêm style cho nội dung  " danh mục bệnh "  */
+      section .noidung-trangloai .box_slidebar .sidebar-001 label {
+      display: block;
+      background: #225c57;
+      color: #fff;
+      padding: 1rem 0px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+  }
+
+      /* Thêm style cho wp_bacsi */
+   .h_bacsi img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 50%; /* Cho hiệu ứng bo tròn */
+    }
+      /* Thêm style cho name_b1 và ck_b1 */
+    .name_b1, .ck_b1 {
+      margin-top: 5px;
+    }
+
+    /* Thêm style cho ct_bt */
+    .ct_bt {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 5px;
+    }
+
+    /* Thêm style cho timhieu */
+    .timhieu {
+      font-weight: bold;
+      color: #39bdbd;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .video-container iframe,
+  .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+   .gt-vid span {
+    display: inline-block;
+    position: relative;
+    color: #6a276e; /* Màu chữ của span */
+    font-size: 25px;
+  }
+
+  .gt-vid span::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px; /* Độ dày của đường gạch chân dưới */
+    bottom: 0;
+    left: 0;
+    background-color: #6a276e; /* Màu đường gạch chân dưới */
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out; /* Thời gian và kiểu chuyển động */
+  }
+
+  .gt-vid span:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+   }
+
+   .baidoc span:hover,
+   .baochi span:hover {
+          color: #4DA6FF;
+   }
+
+
+    /* Thanh cuộn lên */
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4ca69d;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  #back-to-top:hover {
+    background-color: #4DA6FF;
+  }
+
+
+  }
+
+</style>
+
+
+<section>
+    <div class="noidung-trangloai">
+        <div class="box_trangloai">
+
+
+            <h1 class="title-chitiet">Giới thiệu về Phòng Khám Đa Khoa Hảo Nam</h1>
+
+
+            <p></p>
+            <p class="first-line"><strong>Tọa lạc tại Thành Phố Thủ Đức, TP.HCM, Phòng Khám Đa Khoa Hảo Nam đã và đang
+                trở thành một trong những địa chỉ chăm sóc sức khỏe được đông đảo người dân
+                tin tưởng lựa chọn. Phòng khám luôn không ngừng nỗ lực để có thể mang lại những dịch vụ
+                tốt nhất cho mỗi người bệnh nhưng vẫn đảm bảo được sự an toàn, hiệu quả.</strong></p>
+
+            <h2 class="title-h2"> Định hướng hoạt động </h2>
+
+
+            <p>Phòng Khám Đa Khoa Hảo Nam được thành lập với mục tiêu không chỉ giúp chia sẻ tình trạng quá
+                tải của những cơ sở công lập đang gặp phải mà còn hướng đến xây dựng dịch vụ khám chữa bệnh
+                an toàn, hiệu quả, nhanh chóng nhưng vẫn đảm bảo chất lượng, giá cả hợp lý, bảo vệ toàn diện
+                sức khỏe cho tất cả người bệnh.</p>
+
+            <p>Để có thể giữ vững lòng tin nơi bệnh nhân cũng như đáp ứng nhu cầu khám chữa bệnh ngày càng
+                cao của người dân không chỉ trong khu vực TP.HCM mà còn ở những tỉnh thành lân cận, Đa Khoa
+                Hảo Nam luôn chú trọng trong việc tuyển chọn đội ngũ nhân viên y bác sĩ, nhập khẩu những
+                trang thiết bị hiện đại, không ngừng cải tiến và nâng cao phương pháp – kỹ thuật điều
+                trị,...</p>
+
+            <h2 class="title-h2">Những thành tựu và phương pháp tiên tiến trong y học</h2>
+
+            <p>Phòng Khám Đa Khoa Hảo Nam là nơi quy tụ của đội ngũ y bác sĩ chuyên khoa tài giỏi, giàu
+                kinh nghiệm chuyên môn, từng công tác tại những bệnh viện lớn, luôn tận tâm, nhiệt huyết với
+                nghề. Bệnh viện Hảo Nam Tp. Hồ Chí Minh đã và đang là một địa chỉ tin cậy, ngày càng được bệnh nhân tin yêu.</p>
+
+            <p>Với tinh thần đoàn kết gắn bó và cầu tiến, lòng nhiệt tình với tâm huyết người làm Y - Đức, đội ngũ bác sĩ đã thành
+                công trong nhiều ca phẫu thuật khó đồng thời có thể sử dụng tốt các thiết bị công nghệ về y tế hiện đại để hỗ trợ bệnh nhân</p>
+
+            <p style="text-align:center"><strong><img alt=""
+                                                      src="https://res.cloudinary.com/dx9eo8pyh/image/upload/v1704511043/aeViet_Duc_rjrf5o.png"
+                                                      style="height:333px; width:530px"></strong></p>
+
+            <p> <strong> Bức hình trên là 2 anh em Việt - Đức đã được đội ngũ tài giỏi của bệnh viện phẫu thuật thành công tách đôi cặp song sinh</strong></p>
+
+            <p>- Hai bé Nguyễn Việt - Nguyễn Đức ngay từ khi sinh ra đã bị dính liền nhau ở phần bụng, có chung hậu môn và bộ phận sinh dục, có hai chân và một chân cụt.</p>
+
+            <p>- Ngày 4/10/2010, ca phẫu thuật tách rời 2 bé trai diễn ra dưới sự tham gia của 70 y bác sĩ, chuyên gia đầu ngành của cả Việt Nam, Nhật Bản và một số quốc gia khác.</p>
+
+            <p>- GS.BS Trần Đông A là Trưởng kíp mổ tách cặp song sinh Việt - Đức năm đó, nay tham gia với vai trò tham vấn chuyên môn trong cuộc đại phẫu tách dính cặp Song Nhi.</p>
+
+            <p>- Ông từng tham gia Trận Làng Vây thuộc Chiến dịch Đường 9 - Khe Sanh với tư cách là một Y sĩ quân y.</p>
+
+            <p>- Ông được Chủ tịch nước trao tặng Huân chương Lao động hạng nhất, danh hiệu Anh hùng lao động thời kỳ đổi mới (2008),
+                 danh hiệu Thầy thuốc nhân dân (2006).</p>
+
+            <p>- Bệnh viện chúng tôi rất hãnh diện khi có ông ấy cộng tác làm việc ở đây,
+                GS còn được Trường Đại học Y khoa Phạm Ngọc Thạch và Trường Đại học Y Dược Thành phố Hồ Chí Minh mời về thỉnh giảng bộ môn ngoại nhi. </p>
+
+            <p><strong>Nuôi sống trẻ sơ sinh cực non (thiếu tháng nhiều) bằng phương pháp Kangaroo </strong></p>
+
+            <p style="text-align:center"><strong><img alt="" src="https://res.cloudinary.com/dx9eo8pyh/image/upload/v1704513924/Sosinh_etyvwa.png"
+                                                      style="height:333px; width:530px"></strong></p>
+
+            <p> Kangaroo là phương pháp chăm sóc trẻ sinh non tháng, nhẹ cân được thực hiện bằng cách đặt trẻ trong một cái túi phía trước ngực mẹ, để bé được nằm tiếp xúc da kề da trên ngực của mẹ hoặc người thân</p>
+
+            <p>- Kangaroo giúp tăng cường mối quan hệ mẹ con, tăng tiết sữa, trẻ được bú mẹ sớm và kéo dài, co hồi tử cung tốt, giảm nguy cơ xuất huyết sau sinh, giảm lo lắng, tăng tự tin và tăng khả năng chăm sóc con.</p>
+
+            <p>- Trước đây, khi chưa áp dụng phương pháp Kangaroo, Khoa Hồi sức cấp cứu nhi và nhi sơ sinh, Bệnh viện Đa khoa Hảo Nam nuôi trẻ non tháng, nhẹ cân bằng lồng ấp và sưởi ấm bằng đèn chiếu. Tuy nhiên phương pháp này có nguy cơ lây nhiễm chéo và nhiễm khuẩn ở trẻ sơ sinh cao. Từ năm 2013,
+                Khoa áp dụng phương pháp Kangaroo đã chứng minh được hiệu quả không thua kém gì lồng ấp, rất hiệu quả trong việc kiểm soát thân nhiệt của trẻ, dễ dàng để mẹ cho con bú và cung cấp chất dinh dưỡng.</p>
+
+            <p>  Thực hiện phương pháp Kangaroo cho trẻ, các bác sĩ khuyến cáo cách thực hiện và lợi ích của phương pháp: </p>
+
+            <p>- Rửa tay, sát khuẩn tay,chuẩn bị cặp nhiệt độ (nếu cần),
+                thay bỉm sạch, đội mũ, đi găng tay, găng chân, cởi áo, quấn trẻ trong khăn bông ấm,
+                đặt trẻ vào túi Kangaroo: tháo bỏ khăn quấn, 1 bàn tay bế dưới cổ – mông trẻ, 1 tay bê mông trẻ,...</p>
+
+            <p>- Trong quá trình thực hiện Kangaroo cho trẻ, các bậc phụ huynh dễ dàng theo dõi tình trạng của trẻ và nếu có dấu hiệu bất thường thì cũng dễ dàng báo cho các bác sĩ và y tá để xử trí kịp thời.</p>
+
+
+            <p><strong>TESE - ICSI (phân lập tinh trùng từ mô tinh hoàn ICSI)</strong></p>
+
+            <p style="text-align:center"><strong><img alt="" src="https://res.cloudinary.com/dx9eo8pyh/image/upload/v1704516406/tese_uahxzp.png"
+                                                      style="height:333px; width:530px"></strong></p>
+
+            <p>Bức ảnh trên là Các chuyên gia nam học của TT Hỗ trợ sinh sản BVĐK Hảo Nam TP.HCM đang thực hiện phẫu thuật Micro-TESE </p>
+
+            <p>- Micro-TESE không chỉ là một kỹ thuật phẫu thuật vi phẫu phức tạp,
+                mà với yêu cầu tìm ra tinh trùng để làm thụ tinh ống nghiệm nên đòi hỏi sự chuẩn bị rất cẩn thận.</p>
+
+            <p>- Thạc sĩ, bác sĩ Giang Huỳnh Như – Giám đốc Trung tâm Hỗ trợ sinh sản BVĐK Hảo Nam TP.HCM, cho biết: </p>
+
+            <p>- Áp lực về thời gian vô cùng lớn. Tinh trùng và trứng ngay khi lấy ra khỏi cơ thể cần có điều kiện bảo quản ngặt nghèo về nhiệt độ,
+                môi trường tối ưu để đảm bảo chất lượng trứng và tinh trùng mới có cơ hội tạo phôi tốt nâng cao tỷ lệ IVF thành công.</p>
+
+            <p>- Với sự phát triển của khoa học kỹ thuật,
+                trong đó có kỹ thuật vi phẫu (micro-surgery) đã mở ra hy vọng được làm cha chính chủ, hạnh phúc đón con yêu của chính mình.</p>
+
+            <p>- Với sự giúp sức của kính hiển vi,
+                kỹ thuật micro-TESE có thể “đào sâu” đến tận cùng “mọi ngõ ngách” trong tinh hoàn để tìm những con tinh trùng khỏe mạnh.</p>
+
+            <p>-Trung tâm Hỗ trợ sinh sản Hệ thống BVĐK Hảo Nam với lợi thế bệnh viện đa khoa có đầy đủ các chuyên khoa Gây mê hồi sức,
+                Nam khoa, Hỗ trợ sinh sản với phòng Lab chuẩn ISO5 hiện đại nhất Đông Nam Á, có thể thực hiện vi phẫu micro-TESE với tỷ lệ thành công tối ưu.</p>
+
+            <h2 class="title-h2">Về hệ cơ sở hạ tầng</h2>
+
+            <p>Nhằm mang lại những trải nghiệm và cảm giác thoải mái nhất cho mỗi người bệnh khi đến khám
+                chữa bệnh, Phòng Khám Đa Khoa Tân Bình luôn đầu tư đầy đủ tiện nghi như wifi, máy lạnh,...,
+                xây dựng không gian phòng khám khang trang, rộng rãi.</p>
+
+            <p>Với mô hình một bệnh viện thu nhỏ, phòng khám có đầy đủ tất cả những phân khu chức năng cần
+                thiết như khu vực chờ, phòng khám, phòng tiểu phẫu/phẫu thuật đạt chuẩn vô trùng, nhà thuốc
+                đạt chuẩn GPP,...</p>
+
+            <p>Hơn nữa, luôn hiểu rõ máy móc là công cụ hỗ trợ đắc lực trong suốt quá trình thăm khám, chẩn
+                đoán và điều trị bệnh lý nên phòng khám luôn chú trọng trong khâu đầu tư, lựa chọn. Những
+                máy móc, dụng cụ y tế được sử dụng tại phòng khám đều được nhập khẩu từ nước ngoài, đảm bảo
+                tính chính xác và hiệu quả cao nhất.</p>
+
+            <p style="text-align:center"><img alt=""
+                                              src="https://hoanmy.com/vinh/thai-san/wp-content/uploads/2023/09/phong-mo.jpg"
+                                              style="height:333px; opacity:0.9; width:550px"></p>
+
+            <p style="text-align:center"><strong>Cơ sở vật chất hiện đại tại Phòng Khám Đa Khoa Hảo Nam</strong></p>
+
+            <h2 class="title-h2">Về chất lượng dịch vụ</h2>
+
+            <p>Chuyên thăm khám và điều trị những bệnh lý thầm kín khó nói như bệnh nam khoa, bệnh phụ khoa,
+                bệnh xã hội,... nên phòng khám đặc biệt xây dựng mô hình thăm khám “1 bác sĩ – 1 y tá – 1
+                bệnh nhân” nhằm tạo được không gian riêng tư, giúp người bệnh thoải mái hơn khi chia sẻ về
+                những vấn đề mà bản thân đang gặp phải.</p>
+
+            <p>Tuy được trải nghiệm những dịch vụ y tế chất lượng nhưng chi phí mà khách hàng phải chi trả
+                khi đến với Phòng Khám Đa Khoa Hảo Nam lại rất phải chăng, phù hợp với giá sàn đã đưa ra.
+                Hơn nữa, phòng khám cũng rất minh bạch trong vấn đề này khi luôn công khai mọi chi phí theo
+                từng hạng mục chi tiết, người bệnh cũng được tư vấn kỹ càng trước khi điều trị.</p>
+
+            <p>Đa Khoa Hảo Nam mở cửa đón bệnh nhân xuyên suốt tất cả các ngày trong tuần kể cả ngày lễ, từ
+                8h đến 20h nên rất thuận tiện để người bệnh có thể sắp xếp thời gian đến thăm khám và điều
+                trị bệnh mà vẫn không làm ảnh hưởng đến công việc hay học tập.</p>
+
+
+            <div class="clear5"></div>
+            <div class="box-qcao">
+                <p>Hiện nay, phòng khám đang xây dựng hệ thống <span style="color:#FF0000"><strong>Tư vấn online miễn phí</strong> </span>nhanh
+                    chóng - đơn giản - thuận tiện, nhằm phục vụ tốt nhất cho nhu cầu khám chữa bệnh với hai kênh
+                    tư vấn:</p>
+
+                <p>- Tư vấn qua số điện thoại:<strong><span style="color:#FF0000"> </span></strong><a
+                        href="tel:0284447777"><strong><span
+                        style="color:#B22222">0282.444.7777 </span></strong></a></p>
+
+                <p>- Tư vấn qua<strong> <a
+                        href="">chat trực tuyến tại đây</a></strong></p>
+
+                <p>Đừng ngại chia sẻ tình trạng của bạn với các tư vấn chuyên khoa của chúng tôi, bởi mọi thắc
+                    mắc của bạn sẽ được các tư vấn giải đáp miễn phí và cho lời khuyên tốt nhất.</p>
+
+                <p><span style="color:#FF0000"><em><img alt="Phòng Khám Đa Khoa Tân Bình"
+                                                        src="https://dakhoatanbinh.vn/img/click.gif"
+                                                        style="height:20px; width:20px"> Để đăng ký và lấy số đặt hẹn khám trước, bạn vui lòng bấm vào ô tư vấn dưới đây</em></span>
+                </p>
+
+                <p><em><strong><a class="tvImg" rel="nofollow"
+                                  href=""><img
+                        class="btn_tuvan_noidung" alt="Hình tư vấn bệnh online"
+                        src="https://dakhoatanbinh.vn/img/tu-van.png"></a></strong></em></p>
+            </div>
+
+
+            <div class="clear5"></div>
+            <p style="font-size:15px;color: red; padding-left:10px;box-sizing:border-box;">* Lưu ý: hiệu quả của việc hỗ trợ điều trị còn tùy thuộc vào cơ địa của mỗi người.</p>
+            <div class="clear20"></div>
+
+
+            <div class="clear20"></div>
+
+
+        </div>
+<!--        box_trangloai-->
+
+        <div class="box_slidebar">
+            <div class="sidebar-001">
+                <label>DANH MỤC BỆNH</label>
+                <div id="danhmucbenh_ne">
+                    <ul class="dm_cha">
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="clear20"></div>
+
+            <div class="wp_service"
+                 style=" width:250px !important; margin-top: 2px !important; background:#4ca59c !important">
+                <div class="vuilong">VUI LÒNG CHỌN GÓI DỊCH VỤ</div>
+                <p></p>
+                <div class="goi_dv">
+                    <select>
+                        <option>Chọn Gói Dịch Vụ</option>
+                        <option>Gói Khám Nam Khoa</option>
+                        <option>Gói Khám Phụ Khoa</option>
+                        <option>Gói Khám Nhi Khoa</option>
+                        <option>Gói Khám Sản Phụ Khoa</option>
+                    </select>
+                </div>
+
+                <div class="goi_dv">
+                    <select>
+                        <option>Chọn Bác Sĩ Khám</option>
+                        <option>Bùi Đắc Kiểm</option>
+                        <option>Bùi Tiến Đức</option>
+                        <option>Vũ Thị Loan</option>
+                        <option>Trần Thị Vân</option>
+                    </select>
+                </div>
+
+                <div class="gia">GIÁ LIÊN HỆ</div>
+                <div class="chitiet"><a href="">CHI TIẾT</a></div>
+
+            </div>
+
+
+            <div class="clear20"></div>
+            <br>
+
+            <div class="wp_baochi">
+                <div class="baochi"><span>BÁC SĨ ĐỀ XUẤT</span></div>
+                <div class="clear30"></div>
+                <div class="row_tuvantp">
+
+                    <div class="wp_bacsi">
+                        <a href="">
+                            <div class="h_bacsi"><img src="https://dakhoatanbinh.vn/img/bs11.png" alt="icon"></div>
+                            <div class="name_b1">Bs.Bùi Tiến Đức</div>
+                            <div class="ck_b1">Chuyên Chấn Thương Chỉnh Hình</div>
+                            <div class="clear"></div>
+                            <div class="line_b"></div>
+                            <div class="clear"></div>
+                            <div class="ct_bt">
+                                Tốt nghiệp đại học y Thái Bình.<br>
+                                Học Chuyên khoa 1 Nghành chấn thương chỉnh hình tại Đại Học Y Dược HCM...
+                            </div>
+                            <div class="timhieu">Tìm hiểu thêm &gt;&gt;</div>
+                        </a>
+                    </div>
+
+
+                    <div class="wp_bacsi">
+                        <a href="">
+                            <div class="h_bacsi"><img src="https://dakhoatanbinh.vn/img/bs33.png" alt="icon"></div>
+                            <div class="name_b1">Bs.Vũ Thị Ngọc</div>
+                            <div class="ck_b1">Chuyên Sản Phụ Khoa</div>
+                            <div class="clear"></div>
+                            <div class="line_b"></div>
+                            <div class="clear"></div>
+                            <div class="ct_bt">
+                                Tốt nghiệp đại học y Thái Bình.<br>
+                                Học sản phụ khoa- kế hoạch hóa gia đình tại bệnh viện đa khoa tỉnh Hà Nam...
+                            </div>
+                            <div class="timhieu">Tìm hiểu thêm &gt;&gt;</div>
+                        </a>
+                    </div>
+
+
+                    <div class="wp_bacsi">
+                        <a href="">
+                            <div class="h_bacsi"><img src="https://dakhoatanbinh.vn/img/bs22.png" alt="icon"></div>
+                            <div class="name_b1">Bs.Trần Kim Anh</div>
+                            <div class="ck_b1">Chuyên Sản Phụ Khoa</div>
+                            <div class="clear"></div>
+                            <div class="line_b"></div>
+                            <div class="clear"></div>
+                            <div class="ct_bt">
+                                Tốt nghiệp đại học y Thái Bình.<br>
+                                Học Chuyên khoa 1 Sản tại đại học y Thái Bình，Hơn 35 năm kinh nghiệm...
+                            </div>
+                            <div class="timhieu">Tìm hiểu thêm &gt;&gt;</div>
+                        </a>
+                    </div>
+
+
+                </div>
+                <div class="clear30"></div>
+
+            </div>
+        </div>
+<!--        box_slidebar-->
+
+        <div class="content-left">
+              <div class="gt-vid"><span>Giới Thiệu Chung</span></div>
+            <br>
+             <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ef83M9iiJh0" frameborder="0"
+                            allowfullscreen></iframe>
+                </div>
+            <P></P>
+               <div class="baidoc"><span>BÀI ĐỌC ĐỀ XUẤT</span></div>
+                  <div class="wp_baidoc">
+                        <a href="">
+                            <div class="h_baidoc"><img src="https://www.docosan.com/blog/wp-content/uploads/2022/05/bang-gia-dich-vu-y-hoc-co-truyen-2.jpg" alt="icon"></div>
+                            <div class="name_bd">Cập nhật bảng giá dịch vụ y học cổ truyền năm 2023</div>
+                            <div class="ck_bd">Tham khảo bảng giá dịch vụ y học cổ truyền được Doctor có sẵn cập nhật trong bài viết để có sự chuẩn bị tốt hơn về mặt tài chính.
+                                Đồng thời, tìm kiếm địa chỉ khám chữa bệnh uy tín để đảm bảo mức độ an toàn và hiệu quả về mặt sức khỏe. […]</div>
+
+
+                            <div class="docthem">Đọc thêm &gt&gt;</div>
+                        </a>
+                    </div>
+
+                    <div class="wp_baidoc">
+                        <a href="">
+                            <div class="h_baidoc"><img src="https://www.docosan.com/blog/wp-content/uploads/2021/12/thuoc-dong-y-chua-yeu-sinh-ly-nam-1-300x200.jpg" alt="icon"></div>
+                            <div class="name_bd">Bạn có biết: 6 bài thuốc đông y chữa yếu sinh lý nam</div>
+                            <div class="ck_bd">Ưu điểm của phương pháp này phải kể đến là tính an toàn nhờ thành phần thảo dược tự nhiên.
+                                Vậy dùng cây thuốc nam chữa yếu sinh lý như thế nào? Tên của một số loại thuốc đông y chữa yếu sinh lý nam?</div>
+                              <div class="ck_bd"> Hãy cùng tìm hiểu trong bài viết dưới đây!</div>
+
+
+                            <div class="docthem">Đọc thêm &gt&gt;</div>
+                        </a>
+                    </div>
+
+                    <div class="wp_baidoc">
+                        <a href="">
+                            <div class="h_baidoc"><img src="https://www.docosan.com/blog/wp-content/uploads/2021/07/xoa-bop-bam-huyet-1-300x200.jpg" alt="icon"></div>
+                            <div class="name_bd">Top 4 địa điểm xoa bóp bấm huyệt uy tín, điều trị hiệu</div>
+                            <div class="ck_bd">Xoa bóp bấm huyệt là kỹ thuật trị liệu bằng tay, theo đó người bấm huyệt sẽ dùng tay tác động vào các huyệt, da thịt và gân khớp người bệnh.
+                                Phương pháp này đã được kiểm chứng mang lại nhiều lợi ích trong việc điều trị một số bệnh lý về thần kinh, cơ xương khớp, điều hòa chức năng nội tạng,…</div>
+
+
+                            <div class="docthem">Đọc thêm &gt&gt;</div>
+                        </a>
+                    </div>
+
+            <style>
+                .baidoc {
+                  position: relative;
+                  display: inline-block;
+                }
+
+                .wp_baidoc {
+                  margin-top: 20px;
+                }
+
+                .h_baidoc {
+                  width: 450px;
+                  height: 250px;
+                  overflow: hidden;
+                  margin-bottom: 10px;
+                }
+
+                .h_baidoc img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover; /* Giữ tỉ lệ khung hình và đảm bảo ảnh không bị biến đổi */
+                }
+
+                .name_bd {
+                  font-size: 18px;
+                  font-weight: bold;
+                  margin-bottom: 5px;
+                }
+
+                .ck_bd {
+                  font-size: 14px;
+                  color: #666;
+                  margin-bottom: 10px;
+                }
+
+                .docthem {
+                  font-size: 16px;
+                  color:#39bdbd;
+                  cursor: pointer;
+                  font-weight: bold;
+                }
+
+                .docthem:hover,
+                 .timhieu:hover{
+                  text-decoration: underline;
+                }
+            </style>
+
+
+
+        </div>
+<!--     content-left-->
+    </div>
+<!--    noidung-trangloai-->
+
+     <!-- Thêm nút back-to-top -->
+<a href="javascript:void(0);" id="back-to-top" title="Go to top">&#9650;</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var backToTopButton = document.getElementById("back-to-top");
+
+          window.addEventListener("scroll", function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              backToTopButton.style.display = "block";
+            } else {
+              backToTopButton.style.display = "none";
+            }
+          });
+
+          backToTopButton.addEventListener("click", function() {
+            scrollToTop(1000); // Thời gian cuộn lên (milliseconds)
+          });
+
+          function scrollToTop(duration) {
+            var start = window.pageYOffset;
+            var startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+
+            function animateScroll() {
+              var currentTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+              var timeElapsed = currentTime - startTime;
+              window.scrollTo(0, easeInOut(timeElapsed, start, -start, duration));
+
+              if (timeElapsed < duration) {
+                requestAnimationFrame(animateScroll);
+              }
+            }
+
+            function easeInOut(t, b, c, d) {
+              t /= d / 2;
+              if (t < 1) return c / 2 * t * t + b;
+              t--;
+              return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animateScroll);
+          }
+        });
+    </script>
+
+
+
+</section>
+
+{% endblock %}

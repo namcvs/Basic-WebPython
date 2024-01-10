@@ -1,0 +1,11 @@
+{% extends "layout/base.html" %}
+{% block title %} Gio hang {% endblock %}
+
+{% block content %}
+<div class="row " id="bill_detail" style="margin-top:90px">
+ {% include 'layout/thungan/nhap_phieukham.html' %}
+         {% include 'layout/thungan/thongtinhoadon.html' %}
+ {% include 'layout/thungan/thongtin_danhsachthuoc.html' %}
+     {% include 'layout/thungan/thanhtoanhoadon.html' %}
+</div>
+{% endblock %}

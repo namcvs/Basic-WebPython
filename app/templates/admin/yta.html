@@ -1,0 +1,202 @@
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+
+        input, select, button {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="date"] {
+            width: calc(100% - 16px);
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        div.center {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        div.center button {
+              width: 70px; /* Độ rộng của nút (có thể điều chỉnh) */
+            height: 70px; /* Chiều cao của nút (giữ nó giống nhau để tạo hình vuông) */
+            margin-right: 10px; /* Khoảng cách giữa các nút */
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+    }
+
+         div.center button:hover {
+            background-color: #45a049;
+        }
+
+        div.row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        div.row input,
+        div.row select {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            div.row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Danh sách khám bệnh</h1>
+
+<div class="center">
+    Ngày khám: <input type="date" id="ngayKham">
+</div>
+
+<table>
+    <tr>
+        <th>STT</th>
+        <th>Họ tên</th>
+        <th>Giới tính</th>
+        <th>Năm sinh</th>
+        <th>Địa chỉ</th>
+    </tr>
+</table>
+
+<div class="center">
+    <button onclick="addRow()">Thêm</button>
+    <button onclick="submitData()">Gửi</button>
+</div>
+
+
+<script>
+    function addRow() {
+
+         // Kiểm tra nếu đã vượt quá 40 dòng
+    var table = document.querySelector('table');
+    if (table.rows.length - 1 >= 40) {
+        alert('Số lượng bệnh nhân đã đạt tối đa !');
+        return; // Hủy thêm dòng
+    }
+
+        // Thêm dòng mới vào bảng
+        var table = document.querySelector('table');
+        var row = table.insertRow(table.rows.length);
+
+        // STT
+        var cell1 = row.insertCell(0);
+        cell1.innerHTML = '<input type="text" placeholder="Nhập... ">';
+
+        // Họ tên
+        var cell2 = row.insertCell(1);
+        cell2.innerHTML = '<input type="text" placeholder="Nhập... ">';
+
+        // Giới tính
+        var cell3 = row.insertCell(2);
+        cell3.innerHTML = '<select><option value="Nam">Nam</option><option value="Nữ">Nữ</option><option value="Khác">Khác</option></select>';
+
+        // Năm sinh
+        var cell4 = row.insertCell(3);
+        cell4.innerHTML = createYearSelect();
+
+        // Địa chỉ
+        var cell5 = row.insertCell(4);
+        cell5.innerHTML = '<input type="text" placeholder="Nhập... ">';
+
+        // Thêm nút xóa cho dòng mới
+        var deleteCell = row.insertCell(5);
+        deleteCell.innerHTML = '<button onclick="deleteRow(this)">Xóa</button>';
+    }
+
+    function createYearSelect() {
+        var currentYear = new Date().getFullYear();
+        var selectHtml = '<select>';
+        for (var i = currentYear; i >= currentYear - 100; i--) {
+            selectHtml += '<option value="' + i + '">' + i + '</option>';
+        }
+        selectHtml += '</select>';
+        return selectHtml;
+    }
+
+    function deleteRow(button) {
+        // Lấy dòng mà nút xóa được nhấn
+        var row = button.parentNode.parentNode;
+        // Xóa dòng
+        row.parentNode.removeChild(row);
+    }
+
+    function submitData() {
+        // Lấy thông tin từ bảng
+        var table = document.querySelector('table');
+        var data = [];
+        for (var i = 1; i < table.rows.length; i++) {
+            var row = table.rows[i];
+            var rowData = {
+                stt: row.cells[0].querySelector('input').value,
+                name: row.cells[1].querySelector('input').value,
+                gender: row.cells[2].querySelector('select').value,
+                dob: row.cells[3].querySelector('select').value,
+                address: row.cells[4].querySelector('input').value
+            };
+            data.push(rowData);
+        }
+
+        // Lấy ngày khám
+        var ngayKham = document.getElementById('ngayKham').value;
+
+        // Gửi dữ liệu lên console (trong môi trường thực tế, bạn sẽ gửi dữ liệu lên server ở đây)
+        console.log("Ngày khám:", ngayKham);
+        console.log("Dữ liệu gửi lên hệ thống:", data);
+
+        // Xóa tất cả các dòng trừ dòng đầu
+        for (var i = table.rows.length - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+    }
+</script>
+</body>

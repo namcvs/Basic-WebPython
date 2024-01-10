@@ -1,0 +1,70 @@
+<div class="col-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Form đăng kí khám bệnh trực tiếp</h5>
+        </div>
+        <div class="card-body">
+            <!-- Your form goes here -->
+            <form method="post" action="/dangkikhamtructiep" >
+                <!--HO VA TEN -->
+                <div class="mb-3">
+                    <label class="form-label">Họ và tên</label>
+                    <input type="text" class="form-control" name="hoTen" placeholder="nhập tên...">
+                </div>
+
+                <!--CCCD -->
+                <div class="mb-3">
+                    <label class="form-label">CCDD</label>
+                    <input type="number" class="form-control" name="maCCCD" placeholder="nhập mã căn cước công dân...">
+                </div>
+
+                <!--EMAIL -->
+                <div class="mb-3">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-control" name="email" placeholder="name@example.com">
+                </div>
+
+                <!--DIACHI -->
+                <div class="mb-3">
+                    <label class="form-label">Địa chỉ</label>
+                    <input type="text" class="form-control" name="diaChi" placeholder="nhập địa chỉ">
+                </div>
+
+                <!--Ngày sinh -->
+                <div class="mb-3">
+                    <label class="form-label">Ngày sinh</label>
+                    <input type="date" name="ngaySinh" name="ngaySinh" value="" class="form-control">
+                </div>
+
+                <!--Giới tính -->
+                <div class="mb-3">
+                    <label class="form-label " style="padding-right:12px">Giới tính</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" value="MALE" type="radio" name="sex" id="male">
+                        <label class="form-check-label" value="MALE" for="male">MALE</label>
+
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" value="FEMALE"type="radio" name="sex" id="female">
+                        <label class="form-check-label" for="FEMALE">FEMALE</label>
+                    </div>
+                </div>
+
+                <!--SDT -->
+                <div class="mb-3">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="number" name="soDienThoai" value="" class="form-control">
+                </div>
+
+                <!--TIENSUBENH -->
+                <div class="mb-3">
+                    <label class="form-label">Tiền sử bệnh</label>
+                    <textarea class="form-control" rows="5" id="message" name="tienSuBenh"
+                              placeholder="Tiền sử bệnh"></textarea>
+                </div>
+                <!-- Add more form fields as needed -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

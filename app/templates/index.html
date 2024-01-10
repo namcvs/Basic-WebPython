@@ -1,0 +1,57 @@
+{% extends "layout/base.html" %}
+{% block title %} trang chủ {% endblock %}
+
+{% block content %}
+
+<!----------------------------BANNER------------------------------->
+{% include 'layout/client/callforus.html' %}
+
+
+<!----------------------------info DienThoai------------------------------->
+<!--<section class="container">-->
+<!--    <div class="row">-->
+<!--        {% for p in products%}-->
+<!--        <div class="col-xs-12 col-md-3" style="padding:8px">-->
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="{{ p.image }}" alt="Card image">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title">{{ p.name }}</h4>-->
+<!--                    <p class="card-text">{{ p.price }}</p>-->
+<!--                    <a href="/products/{{p.id}}" class="btn btn-primary">xem chi tiết</a>-->
+<!--                    <a href="#" class="btn btn-primary" onclick="addToCart({{p.id}},'{{p.name}}',{{p.price}})">buy</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+
+
+    <!----------------------------info Bác sĩ------------------------------->
+<div class="container mt-4 mb-2">
+
+    <h4 class="display-1 text-center ">Đội ngũ bác sĩ</h4>
+</div>
+  {% include 'layout/client/carousel_bacsi.html' %}
+
+    <!-----------------------------Pageination----------------------------->
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center" style="margin-top:12px">
+        <ul class="pagination">
+            {% for i in range(pages) %}
+            <li class="page-item"><a class="page-link" href="/?page={{i+1}}">{{i+1}}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    <!-- TIN MOI -->
+<div class="container mt-4 mb-4">
+
+    <h4 class="display-1 text-center ">Tin tức</h4>
+</div>
+  {% include 'layout/client/news.html' %}
+    </section>
+    <!--CALL FOR US -->
+<div class="container mt-4 mb-4">
+
+    <h4 class="display-1 text-center ">About Us</h4>
+</div>
+  {% include 'layout/client/client_banner.html' %}
+{% endblock %}

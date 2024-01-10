@@ -1,0 +1,31 @@
+<div id="news">
+    {% for p in image_data %}
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">{{p.title}}</h2>
+            <p class="lead">{{p.content}}</p>
+            <div class="text-end">
+                <button type="button" class="btn btn-primary btn-block">Xem chi tiết</button>
+            </div>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <a href="URL_OF_YOUR_LINK">
+                <img
+                        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                        width="500"
+                        height="500"
+                        src="{{p.url}}"
+                        alt="Image Alt Text"
+                        role="img"
+                        aria-label="Placeholder: 500x500"
+                        preserveAspectRatio="xMidYMid slice"
+                        focusable="false"
+                />
+            </a>
+        </div>
+    </div>
+    {% endfor%}
+    <hr class="featurette-divider">
+</div>

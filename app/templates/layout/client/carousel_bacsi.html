@@ -1,0 +1,17 @@
+<div class="row" id="bacsi">
+    {% for p in bacsis %}
+    <div class="col-xs-12 col-md-3" style="padding:8px">
+        <div class="card">
+            <img class="card-img-top" src="{{ p.avatar }}" alt="Card image">
+            <div class="card-body text-center">
+                <h4 class="card-title ">{{ p.hoTen }}</h4>
+                <p class="card-text">{{ p.diaChi }}</p>
+                <p class="card-text">{{ p.email }}</p>
+                <p class="card-text">SDT:{{ p.soDienThoai }}</p>
+
+                <a href="/nhanvien/{{p.maNV}}" class="btn btn-primary ">xem chi tiết</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

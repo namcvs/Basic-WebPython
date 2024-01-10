@@ -1,0 +1,186 @@
+{% extends "layout/base.html" %}
+{% block title %} Gio hang {% endblock %}
+
+{% block content %}
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+    html {
+        box-sizing: border-box;
+    }
+
+    .agent{
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+
+    /* Thiết kế danh sách đội ngũ nhân viên */
+
+    h1.heading {
+        text-align: center;
+        font-family: 'Dancing Script', 'Nunito', cursive;
+        font-weight: bolder;
+        font-size:60px;
+    }
+
+    .row-agent {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+        padding: 20px 9%;
+    }
+
+    .column-agent {
+        border-radius: 5px;
+        border: 3px solid rgba(0,0,0,.1);
+        box-shadow: var(--box-shadow);
+    }
+
+    .agent-container {
+        padding: 0 16px;
+    }
+
+    .title {
+        color: grey;
+    }
+
+    .agent-button {
+        display: block;
+        margin: 0 auto;
+        font-size: 16px;
+        font-weight: 500;
+        color:white;
+        background:#022135;
+        border-radius: 5px;
+        cursor:pointer;
+        padding: 10px 20px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .agent-button:hover {
+        background:#cf5c36;
+        color: white;
+    }
+}
+
+</style>
+
+<section class="agent">
+    <!--Bắt đầu slideshow-->
+    <div class="slide-container">
+        <div class="mySlides">
+            <img src="https://hoanmy.com/wp-content/uploads/2023/05/banner-doctors-1.png" width=100% height=500px">
+        </div>
+    </div>
+
+    <br>
+
+    <!--Bắt đầu danh sách đội ngũ nhân viên-->
+    <h1 class="heading">Đội ngũ bác sĩ</h1>
+    <br>
+
+    <div class="row-agent">
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-CKI-DAO-THI-THANH-HAI.jpg" alt="ThanhHai" style="width:100%">
+                <div class="agent-container">
+                    <h2>BS.CKII. Đào Thị Thanh Hải</h2>
+                    <p class="title">Bác sĩ CKII - Chuyên Khoa Sản</p>
+                    <p>Bác sĩ Thanh Hải với hơn 6 năm kinh nghiệm làm việc trong lĩnh vực sản phụ khoa tại các bệnh viện lớn, tinh thần cống hiến không ngừng nghỉ, trực tiếp đỡ sinh hơn 2000 ca bao gồm cả sinh thường và sinh mổ. Thành thạo phẫu thuật nội soi với kinh nghiệm thực hiện hơn 100 ca mổ, trong đó có phẫu thuật nội soi cắt tử cung.</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-CKII-PHAM-THANH-KIEN.jpg" alt="Kien" style="width:100%">
+                <div class="agent-container">
+                    <h2>BS.CKII. Phạm Thành Kiên</h2>
+                    <p class="title">Bác sĩ Ngoại khoa</p>
+                    <p>Bác sĩ Kiên tốt nghiệp bác sĩ Đa khoa tại Đại học Y Hà Nội năm 2002 và bác sĩ Chuyên khoa II về Chấn Thương Chỉnh Hình tại Đại học Y Dược TP.HCM năm 2010. Với 10 năm kinh nghiệm, bác được biết đến với chuyên môn cao và tinh thần cống hiến không ngừng nghỉ, thành thạo phẫu thuật với kinh nghiệm để mang đến tốt nhất cho người bệnh.</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-HUA-MINH-HAI.jpg" alt="MinhHai" style="width:100%">
+                <div class="agent-container">
+                    <h2>BS.CKII. Hứa Minh Hải</h2>
+                    <p class="title">Bác sĩ Ngoại khoa</p>
+                    <p>Bác sĩ Hải tốt nghiệp bác sĩ Đa khoa tại Đại học Y Hà Nội năm 2002. Với hơn 20 năm kinh nghiệm trong lĩnh vực y khoa, bác sĩ được biết đến với chuyên môn cao và tinh thần cống hiến không ngừng nghỉ, thành thạo phẫu thuật với kinh nghiệm thực hiện hơn 100 ca mổ để mang đến dịch vụ chăm sóc sức khỏe tốt nhất cho người bệnh.</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-LE-VAN-DIEN.jpg" alt="Dien" style="width:100%">
+                <div class="agent-container">
+                    <h2>BDPH.BS. Lê Văn Diễn</h2>
+                    <p class="title">Phó Khoa Sản</p>
+                    <p>Bác sĩ Diễn có kinh nghiệm thực hiện hàng trăm ca sinh thường, sinh mổ. Trong đó, có những sản phụ có thai kỳ nguy cơ cao. Tham gia trực tiếp xử trí nhiều trường hợp cấp cứu sản khoa như tiền sản giật – sản giật, rau bong non, sa dây rốn, băng huyết sau sinh... Phẫu thuật điều trị các bệnh phụ khoa: u xơ tử cung, u nang buồng trứng, sa sinh dục...</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-LE-XUAN-DUC.jpg" alt="Duc" style="width:100%">
+                <div class="agent-container">
+                    <h2>BS.CKII. Lê Văn Đức</h2>
+                    <p class="title">Bác sĩ CKII - Chuyên Khoa Sản</p>
+                    <p>Bác sĩ Đức với hơn 6 năm kinh nghiệm làm việc trong lĩnh vực sản phụ khoa tại các bệnh viện lớn, trực tiếp đỡ sinh hơn 2000 ca bao gồm cả sinh thường và sinh mổ. Thành thạo phẫu thuật nội soi với kinh nghiệm thực hiện hơn 100 ca mổ, trong đó có phẫu thuật nội soi cắt tử cung.</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-NGUYEN-PHAM-MINH-TUNG.jpg" alt="Tung" style="width:100%">
+                <div class="agent-container">
+                    <h2>BS.CKII. Nguyễn Phạm Minh Tùng</h2>
+                    <p class="title">Bác sĩ CKII - Chuyên Khoa Sản</p>
+                    <p>Bác sĩ Tùng với hơn 6 năm kinh nghiệm làm việc trong lĩnh vực sản phụ khoa tại các bệnh viện lớn, trực tiếp đỡ sinh hơn 2000 ca bao gồm cả sinh thường và sinh mổ. Thành thạo phẫu thuật nội soi với kinh nghiệm thực hiện hơn 100 ca mổ, trong đó có phẫu thuật nội soi cắt tử cung.</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-CKI-DAO-THI-THANH-HAI.jpg" alt="ThanhHai" style="width:100%">
+                <div class="agent-container">
+                    <h2>BS.CKII. Đào Thị Thanh Hải</h2>
+                    <p class="title">Bác sĩ CKII - Chuyên Khoa Sản</p>
+                    <p>Bác sĩ Thanh Hải với hơn 6 năm kinh nghiệm làm việc trong lĩnh vực sản phụ khoa tại các bệnh viện lớn, trực tiếp đỡ sinh hơn 2000 ca bao gồm cả sinh thường và sinh mổ. Thành thạo phẫu thuật nội soi với kinh nghiệm thực hiện hơn 100 ca mổ, trong đó có phẫu thuật nội soi cắt tử cung.</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column-agent">
+            <div class="card">
+                <img src="https://hoanmy.com/wp-content/uploads/2023/05/BDPH-BS-CKII-PHAM-THANH-KIEN.jpg" alt="Kien" style="width:100%">
+                <div class="agent-container">
+                    <h2>BS.CKII. Phạm Thành Kiên</h2>
+                    <p class="title">Bác sĩ Ngoại khoa</p>
+                    <p>Bác sĩ Kiên tốt nghiệp bác sĩ Đa khoa tại Đại học Y Hà Nội năm 2002 và bác sĩ Chuyên khoa II về Chấn Thương Chỉnh Hình tại Đại học Y Dược TP.HCM năm 2010. Bác sĩ được biết đến với chuyên môn cao và tinh thần cống hiến không ngừng nghỉ để mang đến dịch vụ chăm sóc sức khỏe tốt nhất cho người bệnh.</p>
+                    <p><button class="agent-button">Liên hệ ngay</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p><button class="agent-button">XEM THÊM</button></p>
+    <!--Kết thúc danh sách đội ngũ nhân viên-->
+</section>
+{% endblock %}

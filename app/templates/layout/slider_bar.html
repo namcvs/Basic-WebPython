@@ -1,0 +1,43 @@
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Xin chào {{current_user.name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Tác vụ của {{current_user.name}}</p>
+
+
+        <!----------------------------Check Tài khoản để hiển thị chức năng với từng user------------------------------->
+        {% if current_user.is_authenticated %}
+        {% if role == UserRoleEnum.YTA %}
+        <!--      YTA-->
+
+        <button type="button" class="btn btn-success">
+            <a class="text-decoration-none text-light" href="/dangkikhamtructiep">Đăng kí bệnh nhân khám trực tiếp</a>
+        </button>
+
+        {% elif role == UserRoleEnum.THUNGAN %}
+        <!--      THUNGAN-->
+
+        <button type="button" class="btn btn-success">
+            <a class="text-decoration-none text-light" href="/thanhtoan">Thanh toán hóa đơn</a>
+        </button>
+        {% elif role == UserRoleEnum.BACSI %}
+        <!--      BACSI-->
+        <button type="button" class="btn btn-success">
+            <a class="text-decoration-none text-light" href="/lapphieukham">Lập phiếu khám</a>
+        </button>
+        {% elif role == UserRoleEnum.ADMIN %}
+        <!--      ADMIN-->
+        <button type="button" class="btn btn-success">
+            <a class="text-decoration-none text-light" href="/admin">Trang Quản Trị</a>
+        </button>
+        {% endif %}
+        {% endif %}
+
+
+        </ul>
+        <!--    ENDBUTTON-->
+    </div>
+</div>

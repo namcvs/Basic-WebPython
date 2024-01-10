@@ -1,0 +1,116 @@
+{% extends "layout/base.html" %}
+{% block title %} Gio hang {% endblock %}
+
+{% block content %}
+
+
+<!---------------->
+
+<section class="mt-20" style="background-color: #eee;margin:90px">
+    <div class="container py-5 ">
+        <div class="row">
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Form tạo phiếu khám</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Your form goes here -->
+                        <div style="margin-bottom:12px">
+                            <label>Tên bác sĩ: <span class="badge bg-primary"> KHOI</span>
+                            </label>
+                        </div>
+                        <!------------------------------------------------------------------>
+                        <form method="post" class="row">
+                            <!--CCCD -->
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label class="form-label">CCDD</label>
+                                    <input name="maCCCD" type="number" class="form-control"
+                                           placeholder="nhập mã căn cước công dân...">
+                                </div>
+                                <!--TRIEU_CHUNG -->
+                                <div class="mb-3">
+                                    <label class="form-label">Triệu chứng</label>
+                                    <textarea class="form-control" rows="3" name="trieuChung"
+                                              placeholder="Triệu chứng"></textarea></div>
+
+                                <!--BENH_CHUAN_DOAN -->
+
+                                <div class="mb-3">
+                                    <label class="form-label">Bệnh chuẩn đoán</label>
+                                    <textarea class="form-control" rows="3" name="duDoanBenh"
+                                              placeholder="Bệnh chuẩn đoán"></textarea>
+                                </div>
+                            </div>
+                            <!--=========================================================-->
+                            <div class="card col-8">
+                                <div class="card-header">
+                                    <div class="card-title">Danh sách thuốc cần dùng</div>
+                                </div>
+                                <!-----------------------------thêm thuốc------------------------->
+                                <div id="medicineForm">
+                                    <label for="medicineName">Tên thuốc:</label>
+                                    <select name="maThuoc_id" id="medicineName">
+                                        {% for c in thuocs %}
+                                        <option value="{{c.maThuoc}}">{{c.tenThuoc}}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <!--                    <label for="medicineDescription">Mô tả thuốc:</label>-->
+                                    <!--                    <input type="text" id="medicineDescription" name="medicineDescription" required>-->
+
+                                    <label for="quantity">Số lượng</label>
+                                    <input type="number" id="quantity" name="lieuDung" required>
+
+                                    <button type="button" onclick="addMedicine()">Thêm</button>
+                                    <button type="button" onclick="cancelMedicine()">Hủy Thuốc</button>
+<!--                                     <span class="badge bg-danger cart-counter">12</span></a>-->
+
+                                </div>
+                                <!-----------------------------thiển thị danh sách------------------------->
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover model-list">
+                                            <thead class="bg-thead">
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên thuốc</th>
+                                                <th>Đơn vị</th>
+                                                <th>Số lượng</th>
+                                                <th>Cách dùng</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="medicine_list_datas"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------->
+
+
+                            </div>
+                            <button type="submit" style="margin-top:12px" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                Xác nhận
+                            </button>
+
+                            <!-- Modal -->
+                            {% include 'layout/submit.html' %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!---------------------------!--THEM THUOC----------------------------->
+
+
+        </div>
+    </div>
+</section>
+
+
+<!--Tim Kiem Thong tin benh nhan-->
+
+{% endblock %}
+

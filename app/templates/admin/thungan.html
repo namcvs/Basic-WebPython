@@ -1,0 +1,83 @@
+<form id="appointment-form" role="form" method="post" action="/addBenhNhan">
+
+                <!-- SECTION TITLE -->
+                <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                    <h2>Đăng kí lịch khám</h2>
+                </div>
+
+                <div class="wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="col-md-6 col-sm-6">
+                        <label>Name</label>
+                        <input type="text" class="form-control" id="name" name="hoTen" placeholder="Full Name">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label>Địa chỉ</label>
+                        <input type="text" class="form-control" id="diaChi" name="diaChi" placeholder="Your diaChi">
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label>CCCD</label>
+                        <input type="text" class="form-control" id="maCCCD" name="maCCCD" placeholder="Your CCCD">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <label>Ngày Sinh</label>
+                        <input type="date" name="ngaySinh" value="" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <label>Giới Tính</label>
+                        <select class="form-control" name="sex">
+                            <option>MALE</option>
+                            <option>FEMALE</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                        <label>Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="soDienThoai" placeholder="Phone">
+
+                        <label for="Message">Tiền sử bệnh</label>
+                        <textarea class="form-control" rows="5" id="message" name="tienSuBenh"
+                                  placeholder="Tiền sử bệnh"></textarea>
+
+                        <!--                        -->
+
+                        <!-- Button trigger modal -->
+                        <button type="button" style="margin-top:12px" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                            Submit Button
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn chắc đăng kí lịch chứ
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Đồng ý</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                        -->
+                        <!--                        <button type="submit" style="margin-top:12px" class="form-control" id="cf-submit" name="submit">-->
+                        <!--                            Submit Button-->
+                        <!--                        </button>-->
+                    </div>
+                </div>
+            </form>
