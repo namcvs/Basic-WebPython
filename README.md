@@ -9,5 +9,7 @@ Database : MySQL
 4. Adjust the MySQL password to your computer's to correspond to the init.py file
 5. Create the configured database and run models.py file
 6. Run index.py file
-#Recommend:
-   Should use IDE Pycharm of JetBrains
+
+# Recommend:
+
+Should use IDE Pycharm of JetBrains
